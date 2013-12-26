@@ -1,4 +1,4 @@
-#Rename files
+#Rename files, suffix , prefix or extension
 
 import wx
 import os.path
