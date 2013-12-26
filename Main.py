@@ -2,6 +2,7 @@
 
 import wx
 import os.path
+import os
 from Rename import Renamer
 
 
@@ -54,33 +55,6 @@ class TheRenamer(wx.Frame):
 
 #*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
 #-----------------------------------------------------------------------------
-        
-#First Horizontal Box
-       
-        hbox1 = wx.BoxSizer(wx.HORIZONTAL)
-
-  #Static Text for 'Term'
-        st1 = wx.StaticText(panel, label='Text')
-        st1.SetFont(font)
-        hbox1.Add(st1, flag=wx.RIGHT|wx.TOP, border=8)
-
-  #Replacement text Box
-        
-        self.Replacement_Text = wx.TextCtrl(panel,-1,"Enter string to be added",size=wx.Size(-1,30))
-        hbox1.Add(self.Replacement_Text, proportion=1)        
-        self.Replacement_Text.SetFont(font1)
-
-  #Show mod results Button
-        
-        btn_Mod_Results = wx.Button(panel,-1,label='PREVIEW')
-        self.Bind(wx.EVT_BUTTON, self.loadResult_Modified, btn_Mod_Results)
-        hbox1.Add(btn_Mod_Results, flag=wx.RIGHT|wx.LEFT|wx.TOP, border=5)
-        vbox.Add(hbox1, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10)
-        vbox.Add((-1, 10))
-
-#*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
-#--------------------------------------------------------------------------------
-        
 #Second Horizontal Box First Box
         
         hbox21 = wx.BoxSizer(wx.HORIZONTAL)
@@ -91,11 +65,6 @@ class TheRenamer(wx.Frame):
 
         vbox.Add((-1, 10))
 
-#*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
-#--------------------------------------------------------------------------------
-        #*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
-#-------------------------------------------------------------------------------- 
-#Third Horizontal Box
         
  #File Repository1
         
@@ -123,6 +92,38 @@ class TheRenamer(wx.Frame):
 #*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
 #-----------------------------------------------------------------------------
 
+#First Horizontal Box
+       
+        hbox1 = wx.BoxSizer(wx.HORIZONTAL)
+
+  #Static Text for 'Term'
+        st1 = wx.StaticText(panel, label='Text')
+        st1.SetFont(font)
+        hbox1.Add(st1, flag=wx.RIGHT|wx.TOP, border=8)
+
+  #Replacement text Box
+        
+        self.Replacement_Text = wx.TextCtrl(panel,-1,"Enter string to be added",size=wx.Size(-1,30))
+        hbox1.Add(self.Replacement_Text, proportion=1)        
+        self.Replacement_Text.SetFont(font1)
+
+  #Show mod results Button
+        
+        btn_Mod_Results = wx.Button(panel,-1,label='PREVIEW')
+        self.Bind(wx.EVT_BUTTON, self.loadResult_Modified, btn_Mod_Results)
+        hbox1.Add(btn_Mod_Results, flag=wx.RIGHT|wx.LEFT|wx.TOP, border=5)
+        vbox.Add(hbox1, flag=wx.EXPAND|wx.LEFT|wx.RIGHT|wx.TOP, border=10)
+        vbox.Add((-1, 10))
+
+#*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
+#--------------------------------------------------------------------------------
+        
+#*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.
+#--------------------------------------------------------------------------------
+        
+
+#*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*
+#----------------------------------------------------------------------------
 #Second Horizontal Box Second Box
         hbox22 = wx.BoxSizer(wx.HORIZONTAL)
         st22 = wx.StaticText(panel, label='Preview')
@@ -132,8 +133,6 @@ class TheRenamer(wx.Frame):
 
         vbox.Add((-1, 10))
 
-#*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*.*
-#----------------------------------------------------------------------------
 #Third Horizontal Box
         
  #File Repository2
@@ -179,10 +178,10 @@ class TheRenamer(wx.Frame):
 #Fifth Horizontal Box
         hbox5 = wx.BoxSizer(wx.HORIZONTAL)
         self.bt_Final = wx.Button(panel, label='SUBMIT', size=(100, 30))
-        bt_Reset = wx.Button(panel, label='RESET', size=(70, 30))
-        self.bt_Result = wx.Button(panel, label='OPEN RESULT FOLDER', size=(150, 30))
+        self.bt_Reset = wx.Button(panel, label='RESET', size=(70, 30))
+        self.bt_Result = wx.Button(panel, label='OPEN RESULT FOLDER', size=(160, 30))
         hbox5.Add(self.bt_Final, flag=wx.LEFT, border=5)
-        hbox5.Add(bt_Reset, flag=wx.LEFT, border=5)
+        hbox5.Add(self.bt_Reset, flag=wx.LEFT, border=5)
         hbox5.Add(self.bt_Result, flag=wx.LEFT, border=5)
         vbox.Add(hbox5, flag=wx.ALIGN_RIGHT | wx.RIGHT, border=10)
 
@@ -210,14 +209,14 @@ class TheRenamer(wx.Frame):
         item1_1 = pehla.Append(wx.ID_OPEN,
                 "&Open\tAlt-A",
                 "This is to choose folder"
-                ) #Sub-Items of First menu pull down list
+                )  #Sub-Items of First menu pull down list
 
         item1_2 = pehla.Append(wx.ID_EXIT,
                 "&Exit\tAlt-E",
                 "This will exit app"
                 )
         
-        item3_2=teesra.Append(wx.ID_ABOUT,"A&bout\tAlt-B","About Section")
+        item3_2 = teesra.Append(wx.ID_ABOUT, "A&bout\tAlt-B", "About Section")
 
         
         menu_1 = menubar.Append(pehla, '&File')#Naming of Menu items
@@ -225,14 +224,14 @@ class TheRenamer(wx.Frame):
         self.SetMenuBar(menubar)
 
 #Events
-        self.Bind(wx.EVT_MENU, self.OnFileExit,item1_2)
-        self.Bind(wx.EVT_MENU, self.OnFileOpen,item1_1)
-        self.Bind(wx.EVT_BUTTON, self.OnReset, bt_Reset)
+        self.Bind(wx.EVT_MENU, self.OnFileExit, item1_2)
+        self.Bind(wx.EVT_MENU, self.OnFileOpen, item1_1)
+        self.Bind(wx.EVT_BUTTON, self.OnReset, self.bt_Reset)
         self.Bind(wx.EVT_BUTTON, self.Process, self.bt_Final)
         self.Bind(wx.EVT_BUTTON, self.OpenResult, self.bt_Result)
         self.Bind(wx.EVT_BUTTON, self.OnFileOpen, bt_choose_dir)
-        self.Bind(wx.EVT_BUTTON, self.OnClear,self.bt_Clear)
-        self.Bind(wx.EVT_MENU, self.OnAbout,item3_2)
+        self.Bind(wx.EVT_BUTTON, self.OnClear, self.bt_Clear)
+        self.Bind(wx.EVT_MENU, self.OnAbout, item3_2)
 
         
 #Set Launch state of buttons        
@@ -240,49 +239,42 @@ class TheRenamer(wx.Frame):
         self.bt_Clear.Disable()
         self.bt_Final.Disable()
         self.bt_Result.Disable()
-#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Function Definations^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+        self.bt_Reset.Disable()
+#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^Function Definations^^^^^^^^^^^^^^
+#::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
         #My Variables
         self.files_in_folder = []
 
-        
     def OnFileOpen(self, event):
         """ File|Open event - Open dialog box. """
         self.dirname = ''
         dlg = wx.DirDialog(self, "Choose a folder", self.dirname)
-        self.files_holder=[]
-        self.path_holder=[]
-        self.file_fullname_and_path = []
         if (dlg.ShowModal() == wx.ID_OK):
-            
             self._selectedDir = dlg.GetPath()
             self.files_in_folder = GetTheFiles(self._selectedDir)
-            
             self.bt_Clear.Enable()
             self.loadResult_Normal()
 
-                             
-
 #^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-^-
-            
-            
     def OnFileExit(self, event):
         """ File|Exit event """
         self.Close()
 
     def OpenResult(self, event):
-        from os import startfile
+        import platform
         target_dir = os.path.join(self._selectedDir, 'modified')
-        if os.path.isdir(target_dir):
-            startfile(os.path.join(self._selectedDir, 'modified'))
+        if platform.system == 'Windows':
+            from os import startfile
+            if os.path.isdir(target_dir):
+                startfile(os.path.join(target_dir))
+            else:
+                wx.MessageBox('Folder does not exist...',
+                        wx.OK | wx.ICON_INFORMATION
+                        )
         else:
-            wx.MessageBox('Folder does not exist...',
-                    wx.OK | wx.ICON_INFORMATION
-                    )
-            
-        
-        
+            os.system('xdg-open "%s"' % target_dir)
+
     def Process(self, event):
         Renamer(
                 self._selectedDir,
@@ -297,8 +289,6 @@ class TheRenamer(wx.Frame):
                     'Info',
                     wx.OK | wx.ICON_INFORMATION
                     )
-
-
 
     def loadResult_Modified(self, event):
         self.mod_text = self.Replacement_Text.GetValue()
@@ -342,7 +332,7 @@ class TheRenamer(wx.Frame):
         self.statusbar.SetStatusText(str(len(self.mod_list)) + " files will be renamed") #Display results on staus bar
 
     def loadResult_Normal(self):
-        
+        self.bt_Reset.Enable()
         if self.files_in_folder:
             pass
         else:
@@ -359,10 +349,14 @@ class TheRenamer(wx.Frame):
         # load each data row
         for i in range(len(self.files_in_folder)):
 
-            self.Files_List1.InsertStringItem(self.index,self.files_in_folder[i])#max rows value and starting point ,
+            self.Files_List1.InsertStringItem(
+                    self.index,
+                    self.files_in_folder[i]
+                    )  #max rows value and starting point ,
             #here resource management by dynamic allocation
             self.index += 1
-        self.statusbar.SetStatusText(str(len(self.files_in_folder))+ " files found") #Display results on status bar
+        self.statusbar.SetStatusText(
+                str(len(self.files_in_folder)) + " files found") #Display results on status bar
 
     def OnReset(self, event):
         #This will clear all display sections.
@@ -376,6 +370,7 @@ class TheRenamer(wx.Frame):
         #Clear status bar and deactivate Export button
         self.bt_Clear.Disable()
         self.bt_Result.Disable()
+        self.bt_Reset.Disable()
         self.statusbar.SetStatusText("Ready")
         
     def OnClear(self, event):
